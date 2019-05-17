@@ -1,0 +1,17 @@
+<h2>タスク編集画面</h2>
+<%= form_with(model: @task, local: true) do |f| %>
+
+  <div class="field">
+    <%= f.label :タイトル %>
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :内容 %>
+    <%= f.text_area :content %>
+  </div>
+
+  <%= f.submit "タスクを編集する" %>
+<% end %>
+
+<%= link_to 'タスク一覧へ', tasks_path %>
