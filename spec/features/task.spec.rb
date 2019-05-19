@@ -42,7 +42,13 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
+    #6行目でセットしてある初期値を使ってテストを作成
     visit task_path(task_a)
     expect(page).to have_content "タスク詳細画面\nタスク名 タスク詳細 こんにちは 世界\nタスク一覧へ戻る"
+
+    #以下のようなやり方でも可能
+    # task = Task.create!(title: 'test1',content: 'test5555')
+    # visit task_path(task.id)
+    # expect(page).to have_content 'test5555'
   end
 end
