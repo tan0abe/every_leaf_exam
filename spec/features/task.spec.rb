@@ -4,19 +4,15 @@ require 'rails_helper'
 # このRSpec.featureの右側に、「タスク管理機能」のように、テスト項目の名称を書きます（do ~ endでグループ化されています）
 RSpec.feature "タスク管理機能", type: :feature do
   let(:task_a) { Task.create!(title: 'こんにちは', content: '世界') }
-  # scenario（itのalias）の中に、確認したい各項目のテストの処理を書きます。
+  background do
+    FactoryBot.create(:task)
+    FactoryBot.create(:second_task)
+  end
+
   scenario "タスク一覧のテスト" do
-    # あらかじめタスク一覧のテストで使用するためのタスクを二つ作成する
-    Task.create!(title: 'test_task_01', content: 'testtesttest')
-    Task.create!(title: 'test_task_02', content: 'samplesample')
-
-    # tasks_pathにvisitする（タスク一覧ページに遷移する）
     visit tasks_path
-
-    # visitした（到着した）expect(page)に（タスク一覧ページに）「testtesttest」「samplesample」という文字列が
-    # have_contentされているか？（含まれているか？）ということをexpectする（確認・期待する）テストを書いている
-    expect(page).to have_content 'testtesttest'
-    expect(page).to have_content 'samplesample'
+    expect(page).to have_content 'Factory_content1'
+    expect(page).to have_content 'Factory_content2'
   end
 
   scenario "タスク作成のテスト" do
@@ -42,13 +38,17 @@ RSpec.feature "タスク管理機能", type: :feature do
   end
 
   scenario "タスク詳細のテスト" do
-    #6行目でセットしてある初期値を使ってテストを作成
+    # 6行目でセットしてある初期値を使ってテストを作成
     visit task_path(task_a)
     expect(page).to have_content "タスク詳細画面\nタスク名 タスク詳細 こんにちは 世界\nタスク一覧へ戻る"
 
-    #以下のようなやり方でも可能
+    # 以下のようなやり方でも可能
     # task = Task.create!(title: 'test1',content: 'test5555')
     # visit task_path(task.id)
     # expect(page).to have_content 'test5555'
+  end
+
+  scenario "タスクが作成日時の降順に並んでいるかのテスト" do
+    
   end
 end
