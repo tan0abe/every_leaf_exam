@@ -4,10 +4,16 @@
   <tr>
     <th>タスク名</th>
     <th>タスク詳細</th>
+    <th>優先度</th>
+    <th>状態</th>
+    <th>終了期限</th>
   </tr>
   <tr>
     <td><%= @task.title %></td>
     <td><%= @task.content %></td>
+    <td><%= @task.priority %></td>
+    <td><%= @task.status %></td>
+    <td><%= @task.deadline %></td>
   </tr>
 </table>
 
