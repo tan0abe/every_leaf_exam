@@ -6,3 +6,6 @@ ja:
       task:
         title: "タスク名"
         content: "タスク詳細"
+        priority: "優先度"
+        status: "状態"
+        deadline: "終了期限"
