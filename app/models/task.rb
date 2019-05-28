@@ -4,4 +4,8 @@ class Task < ApplicationRecord
   validates :priority, presence: true
   validates :status, presence: true
   validates :deadline, presence: true
+
+  scope :search_title, -> (title) { where("title LIKE ?", "%#{ title }%") }
+  scope :search_status, -> (status) { where("status LIKE ?", "%#{ status }%") }
+  # scope :search_title_status, -> (title, status) { where("title LIKE ?", "%#{ title }%").("status LIKE ?", "%#{ status }%") }
 end

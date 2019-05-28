@@ -25,17 +25,17 @@
 
   <div class="field">
     <%= f.label :優先度 %>
-    <%= f.text_field :priority %>
+    <%= f.select :priority, [["高い"],["普通"],["低い"]], include_blank: true %>
   </div>
 
   <div class="field">
     <%= f.label :状態 %>
-    <%= f.text_field :status %>
+    <%= f.select :status, [["未着手"],["着手中"],["完了"]], include_blank: true %>
   </div>
 
   <div class="field">
     <%= f.label :終了期限 %>
-    <%= f.text_field :deadline %>
+    <%= f.date_field :deadline %>
   </div>
 
   <%= f.submit "タスクを登録する" %>
