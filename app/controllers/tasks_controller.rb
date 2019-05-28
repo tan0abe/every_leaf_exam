@@ -7,6 +7,17 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: :desc)
     end
+
+    if params[:task]
+      if params[:task][:title] && params[:task][:status]
+        # @tasks = Task.search_title_status(params[:task][:title][:status])
+        @tasks = Task.search_title(params[:task][:title]).search_status(params[:task][:status])
+      elsif params[:task][:title]
+        @tasks = Task.search_title(params[:task][:title])
+      else params[:task][:status]
+        @tasks = Task.search_status(params[:task][:status])
+      end
+    end
   end
 
   def new
