@@ -25,7 +25,7 @@
 
   <div class="field">
     <%= f.label :優先度 %>
-    <%= f.select :priority, [["高い"],["普通"],["低い"]], include_blank: true %>
+    <%= f.select :priority, Task.priorities.keys, { 高:'高', 中:'中', 低:'低' } %>
   </div>
 
   <div class="field">
