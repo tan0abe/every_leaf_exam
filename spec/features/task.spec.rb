@@ -18,13 +18,13 @@ RSpec.feature "タスク管理機能", type: :feature do
     visit new_task_path
     fill_in 'task_title', with: 'なごみの湯'
     fill_in 'task_content', with: '1人でもくもく'
-    fill_in 'task_priority', with: '高'
-    fill_in 'task_status', with: '未着手'
+    select '中', from: 'task_priority'
+    select '未着手', from: 'task_status'
     fill_in 'task_deadline', with: '2019-06-10'
     click_on 'タスクを登録する'
     expect(page).to have_content 'なごみの湯'
     expect(page).to have_content '1人でもくもく'
-    expect(page).to have_content '高'
+    expect(page).to have_content '中'
     expect(page).to have_content '未着手'
     expect(page).to have_content '2019-06-10'
   end
