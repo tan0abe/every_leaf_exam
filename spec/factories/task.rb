@@ -6,9 +6,9 @@ FactoryBot.define do
   factory :task do
     title { 'Factory_title1' }
     content { 'Factory_content1' }
-    priority { '高い' }
+    priority { '高' }
     status { '未完了' }
-    deadline { '2000' }
+    deadline { '2019-05-29' }
   end
 
   # 作成するテストデータの名前を「second_task」とします
@@ -16,8 +16,8 @@ FactoryBot.define do
   factory :second_task, class: Task do
     title { 'Factory_title2' }
     content { 'Factory_content2' }
-    priority { '普通' }
+    priority { '中' }
     status { '着手中' }
-    deadline { '2020' }
+    deadline { '2020-01-01' }
   end
 end
