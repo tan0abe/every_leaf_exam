@@ -13,14 +13,14 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :タスク名 %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :タスク詳細 %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: 'form-control' %>
   </div>
 
   <div class="field">
@@ -38,7 +38,7 @@
     <%= f.date_field :deadline %>
   </div>
 
-  <%= f.submit "タスクを登録する" %>
+  <%= f.submit "タスクを登録する", class: ' btn-outline-info' %>
 <% end %>
 
 <%= link_to 'タスク一覧へ', tasks_path %>

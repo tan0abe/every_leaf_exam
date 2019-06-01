@@ -3,15 +3,15 @@
 
   <div class="field">
     <%= f.label :タイトル %>
-    <%= f.text_field :title %>
+    <%= f.text_field :title, class: 'form-control' %>
   </div>
 
   <div class="field">
     <%= f.label :内容 %>
-    <%= f.text_area :content %>
+    <%= f.text_area :content, class: 'form-control' %>
   </div>
 
-  <%= f.submit "タスクを編集する" %>
+  <%= f.submit "タスクを編集する", class: 'btn-outline-info' %>
 <% end %>
 
 <%= link_to 'タスク一覧へ', tasks_path %>
