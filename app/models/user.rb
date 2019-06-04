@@ -7,6 +7,6 @@ class User < ApplicationRecord
             uniqueness: true
   validates :password_digest, presence: true, length: { minimum: 6 }
 
-  before_validation { email.downcase! }  #メールアドレスを小文字へ変換
-  # has_secure_password  #パスワードをハッシュ化
+  before_validation { email.downcase! }  # メールアドレスを小文字へ変換
+  has_secure_password  # gem bcryptを使用しパスワードをハッシュ化
 end
