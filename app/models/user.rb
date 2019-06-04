@@ -3,8 +3,8 @@ class User < ApplicationRecord
   validates :email, presence: true, length: { maximum: 100 },
             format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i },
             uniqueness: true
-  validates :password, presence: true, length: { minimum: 6 }
+  validates :password_digest, presence: true, length: { minimum: 6 }
 
   before_validation { email.downcase! }  #メールアドレスを小文字へ変換
-  has_secure_password  #パスワードをハッシュ化
+  # has_secure_password  #パスワードをハッシュ化
 end
