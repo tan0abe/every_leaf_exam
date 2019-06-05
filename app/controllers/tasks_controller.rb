@@ -27,7 +27,7 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)  #ログイン中のユーザーのidを渡す
     if @task.save
       flash[:success] = "タスクを作成しました"
       redirect_to task_path(@task.id)
