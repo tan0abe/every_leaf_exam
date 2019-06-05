@@ -1,5 +1,7 @@
 <h2>タスク一覧</h2>
 <%= link_to 'ユーザー登録する', new_user_path %>
+<%= link_to 'ログインする', new_session_path %>
+
 <%= form_with(model: Task.new, method: :get, local: true , url: tasks_path) do |f| %>
   <%= f.label :title_search, "タスク名検索" %>
   <%= f.text_field :title %>
