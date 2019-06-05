@@ -1,8 +1,10 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user
+  before_action :enssure_correct_user_for_task, only: [:show, :edit, :update, :destroy]
 
   def index
+    # ソート機能
     if params[:sort_expired]
       @tasks = Task.page(params[:page]).per(3).order('deadline ASC')
     elsif params[:sort_priority]
@@ -10,7 +12,7 @@ class TasksController < ApplicationController
     else
       @tasks = Task.page(params[:page]).per(3).order('created_at DESC')
     end
-
+    # 検索機能
     if params[:task]
       if params[:task][:title] && params[:task][:status]
         @tasks = Task.page(params[:page]).per(3).search_title(params[:task][:title]).search_status(params[:task][:status])
@@ -20,6 +22,8 @@ class TasksController < ApplicationController
         @tasks = Task.page(params[:page]).per(3).search_status(params[:task][:status])
       end
     end
+    # ログインしているユーザーだけのTaskデータを取り出す
+    @tasks = current_user.tasks.page(params[:page]).per(3)
   end
 
   def new
@@ -66,6 +70,15 @@ class TasksController < ApplicationController
   end
 
   def set_task
+    # @task = Task.find(params[:id])
+    @task = current_user.tasks.find(params[:id])
+  end
+
+  #ログインしているユーザーのみタスク管理が出来るようにする
+  def enssure_correct_user_for_task
     @task = Task.find(params[:id])
+    unless current_user.id == @task.user_id
+      redirect_to tasks_path, notice: "権限がありません"
+    end
   end
 end
