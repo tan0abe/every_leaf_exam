@@ -1,2 +1,14 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="form-wrapper">
+  <h2>ユーザー詳細</h2>
+  <div class="task-info">
+    <ul>
+      <li class="info-title">名前</li>
+      <li><%= @user.name %></li>
+    </ul>
+    <ul>
+      <li class="info-title">メールアドレス</li>
+      <li><%= @user.email %></li>
+    </ul>
+  </div>
+</div>
+<%= link_to 'タスク一覧へ', tasks_path %>
