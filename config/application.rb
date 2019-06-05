@@ -11,7 +11,13 @@ module EveryLeafExam
     config.active_record.default_timezone = :local
     config.i18n.default_locale = :ja
 
-      config.generators do |g|
+    config.generators do |g|
+      g.javascripts false
+      g.helper false
+      g.test_framework false
+    end
+
+    config.generators do |g|
       g.test_framework :rspec,
                       fixtures: true,
                       view_specs: false,
