@@ -14,7 +14,7 @@ module SessionsHelper
   end
 
   def forbid_login_user
-    if current_user
+    if current_user.present?
       redirect_to tasks_path, notice: "ログイン済です"
     end
   end

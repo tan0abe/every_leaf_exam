@@ -6,24 +6,28 @@ class TasksController < ApplicationController
   def index
     # ソート機能
     if params[:sort_expired]
-      @tasks = Task.page(params[:page]).per(3).order('deadline ASC')
+      # @tasks = Task.page(params[:page]).per(3).order('deadline ASC')
+      @tasks = current_user.tasks.page(params[:page]).per(3).order('deadline ASC')
     elsif params[:sort_priority]
-      @tasks = Task.page(params[:page]).per(3).order('priority DESC')
+      # @tasks = Task.page(params[:page]).per(3).order('priority DESC')
+      @tasks = current_user.tasks.page(params[:page]).per(3).order('priority DESC')
     else
-      @tasks = Task.page(params[:page]).per(3).order('created_at DESC')
+      # @tasks = Task.page(params[:page]).per(3).order('created_at DESC')
+      @tasks = current_user.tasks.page(params[:page]).per(3).order('created_at DESC')
     end
     # 検索機能
     if params[:task]
       if params[:task][:title] && params[:task][:status]
-        @tasks = Task.page(params[:page]).per(3).search_title(params[:task][:title]).search_status(params[:task][:status])
+        # @tasks = Task.page(params[:page]).per(3).search_title(params[:task][:title]).search_status(params[:task][:status])
+        @tasks = current_user.tasks.page(params[:page]).per(3).search_title(params[:task][:title]).search_status(params[:task][:status])
       elsif params[:task][:title]
-        @tasks = Task.page(params[:page]).per(3).search_title(params[:task][:title])
+        # @tasks = Task.page(params[:page]).per(3).search_title(params[:task][:title])
+        @tasks = current_user.tasks.page(params[:page]).per(3).search_title(params[:task][:title])
       else params[:task][:status]
-        @tasks = Task.page(params[:page]).per(3).search_status(params[:task][:status])
+        # @tasks = Task.page(params[:page]).per(3).search_status(params[:task][:status])
+        @tasks = current_user.tasks.page(params[:page]).per(3).search_status(params[:task][:status])
       end
     end
-    # ログインしているユーザーだけのTaskデータを取り出す
-    @tasks = current_user.tasks.page(params[:page]).per(3)
   end
 
   def new
