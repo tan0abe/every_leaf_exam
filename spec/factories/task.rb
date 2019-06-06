@@ -20,4 +20,13 @@ FactoryBot.define do
     status { '着手中' }
     deadline { '2020-01-01' }
   end
+
+  factory :user_task, class: Task do
+      title { 'test_title01' }
+      content { 'test_content01' }
+      deadline { '2019-06-10' }
+      status {'完了'}
+      priority {'低'}
+      user
+    end
 end
