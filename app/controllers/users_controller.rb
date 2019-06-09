@@ -9,6 +9,12 @@ class UsersController < ApplicationController
   end
 
   def show
+    if current_user.present?  #ログインしていない時は、current_user.idを確かめないので、current_userがnilというエラーにならない
+      unless current_user.id == @user.id
+        flash[:danger] = "他人のプロフィールは見ることはできません！"
+        redirect_to tasks_path
+      end
+    end
   end
 
   def create
