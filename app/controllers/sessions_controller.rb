@@ -12,14 +12,14 @@ class SessionsController < ApplicationController
       redirect_to tasks_path
       flash[:notice] = "ログインしました"
     else
-      render 'new'
       flash.now[:danger] = "ログインに失敗しました"
+      render 'new'
     end
   end
 
   def destroy
     session.delete(:user_id)
-    redirect_to new_session_path
     flash[:notice] = "ログアウトしました"
+    redirect_to new_session_path
   end
 end
