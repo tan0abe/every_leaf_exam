@@ -3,7 +3,7 @@ require 'rails_helper'
  RSpec.feature "ユーザー管理機能", type: :feature do
   feature '新規登録機能' do
 
-     before do
+    before do
       visit new_user_path
       fill_in "メールアドレス",	with: "test_user@gmail.com"
       fill_in "パスワード",	with: "000000"
