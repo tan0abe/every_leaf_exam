@@ -35,7 +35,7 @@
 
   <div class="field">
     <%= f.label :終了期限 %>
-    <%= f.date_field :deadline %>
+    <%= f.date_field :deadline, value: Time.now.strftime("%Y-%m-%d") %>
   </div>
 
   <%= f.submit "タスクを登録する", class: ' btn-outline-info' %>
