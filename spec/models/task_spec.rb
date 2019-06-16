@@ -2,14 +2,11 @@ require 'rails_helper'
 
 RSpec.describe Task, type: :model do
   describe "Taskモデルのテスト" do
-    before do
-      user = FactoryBot.create(:user)
-      task = FactoryBot.create(:task)
-    end
+    user = FactoryBot.create(:user)
 
     context "バリデーションのテスト" do
       it "titleが空ならバリデーションが通らない" do
-        task = user.task.build(
+        task = user.tasks.build(
           title: "",
           content: "テスト内容"
         )
@@ -17,7 +14,7 @@ RSpec.describe Task, type: :model do
       end
 
       it "contentが空ならバリデーションが通らない" do
-        task = user.task.build(
+        task = user.tasks.build(
           title: "テストタイトル",
           content: ""
         )
@@ -25,12 +22,12 @@ RSpec.describe Task, type: :model do
       end
 
       it "titleとcontentに内容が記載されていればバリデーションが通る" do
-        task = user.task.build(
+        task = user.tasks.build(
           title: "テストタイトル",
-          content: "テスト内容"
-          # priority: "高"
-          # status: "未着手"
-          # deadline: Date.today
+          content: "テスト内容",
+          priority: 0,
+          status: "未着手",
+          deadline: "2019-06-10"
         )
         expect(task).to be_valid
       end
