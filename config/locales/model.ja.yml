@@ -2,10 +2,17 @@ ja:
   activerecord:
     models:
       task: "タスク"
+      user: "ユーザー"
     attributes:
       task:
         title: "タスク名"
         content: "タスク詳細"
         priority: "優先度"
-        status: "状態"
+        status: "ステータス"
         deadline: "終了期限"
+      user:
+        name: "名前"
+        email: "メールアドレス"
+        password: "パスワード"
+        password_confirmation: "パスワード確認用"
+        admin: "管理者権限"
