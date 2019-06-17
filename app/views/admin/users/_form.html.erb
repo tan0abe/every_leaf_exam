@@ -1,5 +1,5 @@
 <div class="form">
-  <%= form_with(model: @user, local: true) do |f| %>
+  <%= form_with(model: [:admin, @user], local: true) do |f| %>
 
     <% if @user.errors.any? %>
       <div id="error_explanation">
@@ -18,22 +18,33 @@
         <%= f.label :名前 %>
         <%= f.text_field :name %>
       </div>
+
       <div class="field">
         <%= f.label :メールアドレス %>
         <%= f.email_field :email %>
       </div>
-      <div class="field">
-        <%= f.label :パスワード %>
-        <%= f.password_field :password %>
-      </div>
+
+      <% if params[:id].nil? %>
+        <div class="field">
+          <%= f.label :パスワード %>
+          <%= f.password_field :password %>
+        </div>
+      <% end %>
+
       <div class="field">
         <%= f.label :パスワード再確認 %>
         <%= f.password_field :password_confirmation %>
       </div>
+
+      <div class="field">
+        <%= f.label :admin %>
+        <%= f.check_box :admin %>
+      </div>
     </div>
 
-    <%= f.submit "アカウントを作成する" %>
+    <div class="actions">
+      <%= f.submit "アカウントを作成する" %>
+      <%= link_to 'タスク一覧へ', tasks_path %>
+    </div>
   <% end %>
 </div>
-
-<%= link_to 'タスク一覧へ', tasks_path %>
