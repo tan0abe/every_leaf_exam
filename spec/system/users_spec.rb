@@ -24,7 +24,7 @@ require 'rails_helper'
       click_button 'アカウントを作成する'
 
       within '#error_explanation' do
-        expect(page).to have_content 'Nameを入力してください'
+        expect(page).to have_content '名前を入力してください'
       end
     end
   end

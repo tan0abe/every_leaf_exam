@@ -5,9 +5,10 @@ FactoryBot.define do
     password { 'qwerty' }
   end
 
-  # factory :user2, class: User do
-  #   name { 'テストユーザー2' }
-  #   email { 'test22222@example.com' }
-  #   password { 'qwerty' }
-  # end
+  factory :admin_user, class: User do
+    name { "admin_user" }
+    email { "admin@example.com" }
+    password { "qwerty" }
+    admin {"true"}
+  end
 end
