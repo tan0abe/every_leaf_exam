@@ -6,7 +6,7 @@ class Admin::UsersController < ApplicationController
   PER = 10
 
   def index
-    @users = User.all.order(admin: :desc).page(params[:page]).per(PER)
+    @users = User.all.includes(:tasks)
   end
 
   def new
@@ -50,8 +50,10 @@ class Admin::UsersController < ApplicationController
   end
 
   def admin_required
-    unless current_user.admin?
-      redirect_to root_path, notice: "権限がありません"
+    if current_user.present?
+      unless current_user.admin?
+        redirect_to root_path, notice: "権限がありません"
+      end
     end
   end
 
