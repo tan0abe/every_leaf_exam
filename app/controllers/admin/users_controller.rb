@@ -2,8 +2,10 @@ class Admin::UsersController < ApplicationController
   before_action :admin_required
   before_action :set_user, only: [:show, :edit, :update, :destroy]
 
+  PER = 10
+
   def index
-    @users = User.all
+    @users = User.page(params[:page]).per(PER)
   end
 
   def new
