@@ -59,8 +59,10 @@ class Admin::UsersController < ApplicationController
 
   #管理者自身が自分のアカウントを削除できないように制御
   def prohibited_admin_destroy
-    if current_user.admin? && current_user === @user
-      redirect_to admin_users_path , notice: "管理者自身の削除はできません"
+    if current_user.present?
+      if current_user.admin? && current_user === @user
+        redirect_to admin_users_path , notice: "管理者自身の削除はできません"
+      end
     end
   end
 end
